@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Asistencias</h2>
+
+<form method="get" class="row mb-3">
+    <div class="col-md-4">
+        <input type="text" name="q" value="{{ query }}" class="form-control"
+               placeholder="Buscar por estudiante o materia">
+    </div>
+    <div class="col-md-2">
+        <button type="submit" class="btn btn-primary">Buscar</button>
+        <a href="{% url 'asistencia_list' %}" class="btn btn-secondary">Limpiar</a>
+    </div>
+</form>
+
+<a href="{% url 'asistencia_create' %}" class="btn btn-success mb-3">Registrar asistencia</a>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Estudiante</th>
+            <th>Materia</th>
+            <th>Fecha</th>
+            <th>Presente</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for asis in asistencias %}
+        <tr>
+            <td>{{ asis.estudiante }}</td>
+            <td>{{ asis.materia }}</td>
+            <td>{{ asis.fecha }}</td>
+            <td>{{ asis.presente|yesno:"Sí,No" }}</td>
+            <td>
+                <a href="{% url 'asistencia_update' asis.pk %}" class="btn btn-sm btn-primary">Editar</a>
+                <a href="{% url 'asistencia_delete' asis.pk %}" class="btn btn-sm btn-danger">Eliminar</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="5">No hay asistencias registradas.</td></tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

@@ -21,5 +21,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('accounts.urls')),        # home y login por aquí
     path('accounts/', include('accounts.urls')),# opcional, pero útil
-    path('academico/', include('academico.urls')), 
+    path('academico/', include('academico.urls')),
+    path('evaluacion/', include('evaluacion.urls')),
 ]
