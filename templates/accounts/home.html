@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Panel principal</h2>
+<p>Bienvenido, {{ user.first_name|default:user.username }}.</p>
+
+{% if perfil %}
+    <p>Tu rol es: <strong>{{ perfil.get_rol_display }}</strong></p>
+{% endif %}
+
+<p>Aquí después vamos a poner enlaces a:</p>
+<ul>
+    <li>Gestión de estudiantes, cursos y materias</li>
+    <li>Registro de calificaciones y asistencia</li>
+    <li>Dashboard con gráficos</li>
+</ul>
+{% endblock %}
